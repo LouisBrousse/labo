@@ -10,19 +10,7 @@ python labo_cmd.py add Xavier F305
 
 # Réponse : dictionnaire, clé = personne, valeur = bureau
 
-'''
-Evolution possible :
-    labo = {
-        'bureaux' : {
-            'F305': 4,
-            'F307': 2,
-        },
-        'affectations': {
-            'Xavier': 'F305',
-        }
 
-    }
-'''
 # Créations des exceptions
 class PresentException(Exception):
     pass

@@ -4,6 +4,7 @@ from laboratoire import *
 Interface sur la labo avec menu textuel.
 '''
 
+
 def afficher_menu():
     print('1- Enregistrer une arrivée')
     print('2- Enregistrer un départ')

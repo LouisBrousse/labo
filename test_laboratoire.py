@@ -1,8 +1,11 @@
 import laboratoire
-import pytest
+
+import pytesteponse = est
 
 
 labo = {'Simon':'F707', 'Pierre':'F808', 'Regis':'F101'}
+
+
 
 
 def test_enrgistrer_arrivee():
