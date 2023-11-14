@@ -13,6 +13,7 @@ def afficher_menu():
     print('5- Présence d\'une personne')
     print('6- Obtenir le bureau d\'une personne')
     print('7- Obtenir la liste du personnel avec le bureau')
+    print('8- Obtenir la liste des occupants d\'un bureau')
     print('0- Quitter')
 
 def demander_choix():
@@ -51,7 +52,22 @@ def gerer_modifier_nom(labo):
         modifier_nom(labo, nom, n_nom)
     except AbsentException as e:
         print(f"{e}: Impossible, personne inconnue")
-    
+
+def bureau_occupant(labo, nom):
+    return labo[nom]
+
+def lister_occupant(labo):
+    liste_occupant = {}
+    for bureau, occupant in labo.items():
+        if occupant not in liste_occupant:
+            liste_occupant[occupant] = [bureau]
+        else:
+            liste_occupant[occupant].append(bureau)
+
+    return liste_occupant
+
+
+        
 
 def traiter_choix(choix, labo):
     nom=''
@@ -70,10 +86,17 @@ def traiter_choix(choix, labo):
     elif choix == 6:
         nom = input("Nom ? ")
         reponse = est_presente(labo, nom)
+        bureau_occupant(nom)
         print(f'Le bureau de {nom} est le {labo[nom]}'if reponse else 'personne inconnue')
     elif choix == 7:
         for nom in labo:
             print(f'{nom} => {labo[nom]}')
+    elif choix == 8:
+        occupants_par_bureau = lister_occupant(labo)
+        for bureau, occupants in occupants_par_bureau.items():
+            print (f'{bureau}:')
+            for occupant in occupants:
+                print(f'-{occupant}')
 
 def main():
     quitter = False
