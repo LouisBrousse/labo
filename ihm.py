@@ -18,6 +18,7 @@ def afficher_menu():
 def demander_choix():
     return int(input("Votre choix: "))
 
+
 def gerer_arrivee(labo):
     try:
         nom = input("Nom ? ")

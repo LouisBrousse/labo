@@ -10,7 +10,6 @@ python labo_cmd.py add Xavier F305
 
 # Réponse : dictionnaire, clé = personne, valeur = bureau
 
-
 # Créations des exceptions
 class PresentException(Exception):
     pass
