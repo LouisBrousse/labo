@@ -10,19 +10,6 @@ python labo_cmd.py add Xavier F305
 
 # Réponse : dictionnaire, clé = personne, valeur = bureau
 
-'''
-Evolution possible :
-    labo = {
-        'bureaux' : {
-            'F305': 4,
-            'F307': 2,
-        },
-        'affectations': {
-            'Xavier': 'F305',
-        }
-
-    }
-'''
 # Créations des exceptions
 class PresentException(Exception):
     pass
@@ -50,16 +37,13 @@ def enregistrer_depart(labo, nom):
 def est_presente(labo, nom):
     return nom in labo
 
+def bureau_occupe(labo, nom):
+    return labo[nom]
+
 def modifier_bureau(labo, nom, n_bureau):
-    if nom not in labo:
-        raise AbsentException
-    if labo[nom] == n_bureau:
-        raise MemeBureauException
     labo[nom] = n_bureau
 
 def modifier_nom(labo, nom, n_nom):
-    if nom not in labo:
-        raise AbsentException
     bureau = labo.pop(nom)
     labo[n_nom] = bureau
 
