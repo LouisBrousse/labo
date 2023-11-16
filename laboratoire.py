@@ -35,7 +35,6 @@ def enregistrer_depart(labo, nom):
     del labo[nom]
 
 
-
 def est_presente(labo, nom):
     return nom in labo
 
@@ -49,6 +48,15 @@ def modifier_nom(labo, nom, n_nom):
     bureau = labo.pop(nom)
     labo[n_nom] = bureau
 
+def lister_occupants(labo):
+    liste_occupants = {}
+    for occupant, bureau in labo.items():
+        if occupant not in liste_occupants:
+            liste_occupants[occupant] = [bureau]
+        else:
+            liste_occupants[occupant].append(bureau)
+
+    return liste_occupants
 
 
 # Les opérations qui permettent de manipuler les données du labo.

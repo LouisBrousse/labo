@@ -82,7 +82,7 @@ def main():
     ajouter_entree(mp, 'Présence d\'une personne', gerer_presence, [labo])
     ajouter_entree(mp, "Vérifier l'occupant d'un bureau", bureau_occupant, [labo])
     ajouter_entree(mp, "Afficher la liste du personnel", liste_personnel, [labo])
-    ajouter_entree(mp, "Afficher les occupants d'un bureau", occupants_bureau, [labo])
+    ajouter_entree(mp, "Afficher les occupants bureau", occupants_bureau, [labo])
 
     ajouter_entree(mp, 'Nouvelle opération', print, ['Labo :', labo])
     
