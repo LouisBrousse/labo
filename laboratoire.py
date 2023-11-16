@@ -34,6 +34,8 @@ def enregistrer_depart(labo, nom):
         raise AbsentException
     del labo[nom]
 
+
+
 def est_presente(labo, nom):
     return nom in labo
 

@@ -92,7 +92,7 @@ def occupants_bureau(labo):
 
 
 def traiter_choix(choix, labo):
-    nom=''
+    nom='' 
     if choix == 1:
         gerer_arrivee(labo)    
     elif choix == 2:
