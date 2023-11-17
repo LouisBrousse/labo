@@ -5,7 +5,7 @@ Backend.
 Partie réutilisable entre les différentes IHM.
 python labo_cmd.py add Xavier F305
 '''
-
+import json
 # Définir ce qu'est un laboratoire ? Quel type ?
 
 # Réponse : dictionnaire, clé = personne, valeur = bureau
@@ -34,8 +34,6 @@ def enregistrer_depart(labo, nom):
         raise AbsentException
     del labo[nom]
 
-
-
 def est_presente(labo, nom):
     return nom in labo
 
@@ -49,6 +47,24 @@ def modifier_nom(labo, nom, n_nom):
     bureau = labo.pop(nom)
     labo[n_nom] = bureau
 
+def lister_occupants(labo):
+    liste_occupants = {}
+    for occupant, bureau in labo.items():
+        if occupant not in liste_occupants:
+            liste_occupants[occupant] = [bureau]
+        else:
+            liste_occupants[occupant].append(bureau)
+
+    return liste_occupants
+
+def sauvegarde (labo, fichier_sauvegarde):
+    fichier_sauvegarde="sauvegarde.txt"
+    with open(fichier_sauvegarde,'w') as file:
+        json.dump(labo, file)
+    print("fichier sauvegardé!")
+    
+def lire_la_sauvegarde():
+    
 
 
 # Les opérations qui permettent de manipuler les données du labo.
