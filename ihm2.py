@@ -1,5 +1,8 @@
 from laboratoire import *
 from menu import *
+import json
+import csv
+
 
 '''quitter = False
     labo = laboratoire()
@@ -11,6 +14,8 @@ from menu import *
         quitter = choix == 0
 Interface sur la labo avec menu textuel.
 '''
+
+
 
 def gerer_arrivee(labo):
     try:
@@ -29,9 +34,12 @@ def gerer_depart(labo):
 
 def gerer_modifier_bureau(labo):
     nom = input('Nom ?')
-    n_bureau = input('Nouveau bureau?')
-    modifier_bureau(labo, nom, n_bureau)
-  
+    reponse = est_presente(labo, nom)
+    if reponse:
+        n_bureau = input('Nouveau bureau?')
+        modifier_bureau(labo, nom, n_bureau)
+    else:
+        print('Personne inconnue')
 
 def gerer_modifier_nom(labo):
         nom = input("Nom ? ")
@@ -58,7 +66,7 @@ def bureau_occupant(labo):
 
 def liste_personnel(labo):
     for nom in labo:
-        print(f'{nom} => {labo[nom]}')
+        print(f'{nom}, {labo[nom]}')
 
 
 def occupants_bureau(labo):
@@ -68,10 +76,34 @@ def occupants_bureau(labo):
         for occupant in occupants:
             print(f'-{occupant}')
 
+def occupants_bureau_html(labo):
+    liste_bureau_html = "liste_occupant.html"
+    occupants_par_bureau = lister_occupants(labo)
+    script_html = "<!DOCTYPE html> <html>\n<head>\n<title>Generated HTML</title>\n</head>\n<body>\n"
+    for bureau, occupants in occupants_par_bureau.items():
+        script_html += f"<p>{bureau}:</p>"
+        for occupant in occupants:
+            script_html += f"<p>- {occupant}</p>\n"
+    
+    script_html += "</body>\n</html>"
+    with open(liste_bureau_html, "w") as file:
+        file.write(script_html)
 
+def sauvegarder (labo):
+    sauvegarde(labo)
+    
+def charger():
+    
+    
+  #  with open(fichier_sauvegarde, 'r') as file:
+   #     return json.load()
+    
+    
 
 def main():
-    labo = laboratoire()
+    fichier_sauvegarde = 'sauvegarde_lab.json'
+    labo = {}
+    
     enregistrer_arrivee(labo, 'Louis', 'C310')
  
     mp = Menu()     # menu principal
@@ -83,6 +115,8 @@ def main():
     ajouter_entree(mp, "Vérifier l'occupant d'un bureau", bureau_occupant, [labo])
     ajouter_entree(mp, "Afficher la liste du personnel", liste_personnel, [labo])
     ajouter_entree(mp, "Afficher les occupants bureau", occupants_bureau, [labo])
+    ajouter_entree(mp, "Afficher les occupants bureau en html", occupants_bureau_html, [labo])
+    ajouter_entree(mp, "Sauvegarde", sauvegarde, [labo, fichier_sauvegarde])
 
     ajouter_entree(mp, 'Nouvelle opération', print, ['Labo :', labo])
     
